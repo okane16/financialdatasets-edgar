@@ -1,0 +1,33 @@
+{
+  "ticker": "JNJ",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-29",
+  "source_kind": "sec-edgar",
+  "source_urls": [
+    "https://www.sec.gov/Archives/edgar/data/200406/000020040626000087/jnj-20260329.htm",
+    "https://data.sec.gov/submissions/CIK0000200406.json",
+    "https://www.sec.gov/Archives/edgar/data/200406/000020040626000087/0000200406-26-000087-index.html"
+  ],
+  "financials_usd": {
+    "revenue": 24062000000,
+    "net_income": 5235000000,
+    "total_assets": 200894000000,
+    "operating_cash_flow": 2514000000,
+    "capital_expenditures": 1049000000,
+    "free_cash_flow": 1465000000
+  },
+  "ratios": {
+    "net_margin": 0.217563,
+    "free_cash_flow_margin": 0.060884
+  },
+  "notes": [
+    "Source: JNJ 10-Q filed 2026-04-22 for Q1 FY2026 (3 months ended March 29, 2026), accession 0000200406-26-000087",
+    "Revenue is RevenueFromContractWithCustomerExcludingAssessedTax (Sales to customers) per XBRL context c-1",
+    "Net income is NetIncomeLoss per XBRL context c-1",
+    "Total assets from balance sheet as of 2026-03-29 (XBRL context c-14)",
+    "Operating cash flow is NetCashProvidedByUsedInOperatingActivities per XBRL context c-1",
+    "Capital expenditures (positive outflow) is PaymentsToAcquirePropertyPlantAndEquipment (Additions to PP&E) per XBRL context c-1",
+    "Free cash flow = operating cash flow minus capital expenditures: 2,514M - 1,049M = 1,465M",
+    "All values in millions as reported (scale=6 in XBRL), converted to full USD"
+  ]
+}

@@ -1,6 +1,6 @@
 schema_version: 1
-id: financialdatasets-vs-edgar-normalized-financials
-name: "Compare Financial Datasets REST against SEC EDGAR for normalized financials"
+id: financialdatasets-vs-edgar-latest-reported-financials
+name: "Compare Financial Datasets REST against SEC EDGAR for latest reported quarterly financials"
 flow:
   prompt: |
     You are running one variant of a financial-data extraction benchmark.
@@ -11,16 +11,14 @@ flow:
     - Variants ending in `sec-edgar` must use SEC EDGAR/public SEC data directly.
 
     Task:
-    Produce /workspace/answer.json for the assigned ticker's FY2023 annual
-    financials. FY2023 means the annual period the company labels as fiscal
-    year 2023, even when the company's fiscal year does not align with the
-    calendar year. Use the company-reported annual report period for FY2023,
-    not trailing twelve months, not calendar-year 2023 activity, and not FY2024.
+    Produce /workspace/answer.json for the assigned ticker's most recent
+    company-reported quarterly earnings period. Report quarterly earnings
+    data, not trailing twelve month values or an older quarter.
 
     Required output shape:
     {
       "ticker": "AAPL",
-      "fiscal_year": 2023,
+      "fiscal_year": 2025,
       "report_period": "YYYY-MM-DD",
       "source_kind": "financialdatasets-rest" | "sec-edgar",
       "source_urls": ["..."],
@@ -42,15 +40,13 @@ flow:
     Financial Datasets REST variants:
     - Use FINANCIAL_DATASETS_API_KEY from the environment.
     - Authenticate with the X-API-KEY header.
-    - Prefer https://api.financialdatasets.ai/financials/?ticker=<TICKER>&period=annual&limit=1
-      or the smallest equivalent number of Financial Datasets requests.
     - Include api.financialdatasets.ai in source_urls.
 
     SEC EDGAR variants:
     - Do not use Financial Datasets, financialdatasets.ai, or the Financial
       Datasets docs/API in any way.
-    - Use SEC EDGAR/public SEC data directly, such as companyfacts XBRL JSON
-      and filing metadata from sec.gov/data.sec.gov.
+    - Use SEC EDGAR/public SEC data directly for the latest company-reported
+      quarterly earnings period.
     - Send a respectful User-Agent if you make SEC HTTP requests.
     - Include sec.gov or data.sec.gov URLs in source_urls.
 
@@ -124,6 +120,12 @@ matrix:
     - id: pg-sec-edgar
       tag: PG-sec-edgar
 model: claude-sonnet-4-6
+secrets: [FINANCIAL_DATASETS_API_KEY]
+setup_checks:
+  - name: runtime-tools-available
+    script: |
+      command -v python3 >/dev/null
+      command -v jq >/dev/null
 tests:
   application:
     - name: answer-exists
@@ -158,80 +160,159 @@ tests:
         import math
         import os
         import sys
-        import urllib.request
 
-        metadata = {
-            "aapl": {"ticker": "AAPL", "cik": "0000320193", "fiscal_year": 2023, "report_period": "2023-09-30"},
-            "msft": {"ticker": "MSFT", "cik": "0000789019", "fiscal_year": 2023, "report_period": "2023-06-30"},
-            "googl": {"ticker": "GOOGL", "cik": "0001652044", "fiscal_year": 2023, "report_period": "2023-12-31"},
-            "meta": {"ticker": "META", "cik": "0001326801", "fiscal_year": 2023, "report_period": "2023-12-31"},
-            "jnj": {"ticker": "JNJ", "cik": "0000200406", "fiscal_year": 2023, "report_period": "2023-12-31"},
-            "xom": {"ticker": "XOM", "cik": "0000034088", "fiscal_year": 2023, "report_period": "2023-12-31"},
-            "wmt": {"ticker": "WMT", "cik": "0000104169", "fiscal_year": 2023, "report_period": "2023-01-31"},
-            "tsla": {"ticker": "TSLA", "cik": "0001318605", "fiscal_year": 2023, "report_period": "2023-12-31"},
-            "cost": {"ticker": "COST", "cik": "0000909832", "fiscal_year": 2023, "report_period": "2023-09-03"},
-            "pg": {"ticker": "PG", "cik": "0000080424", "fiscal_year": 2023, "report_period": "2023-06-30"},
-        }
-
-        tag_candidates = {
-            "revenue": [
-                "RevenueFromContractWithCustomerExcludingAssessedTax",
-                "Revenues",
-                "SalesRevenueNet",
-            ],
-            "net_income": ["NetIncomeLoss"],
-            "total_assets": ["Assets"],
-            "operating_cash_flow": ["NetCashProvidedByUsedInOperatingActivities"],
-            "capital_expenditures": ["PaymentsToAcquirePropertyPlantAndEquipment"],
+        # Static source-truth fixture generated on 2026-05-15 with
+        # scripts/inspect-latest-sec-financials.py and then hard-coded here.
+        expected_by_ticker = {
+            "aapl": {
+                "ticker": "AAPL",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q2",
+                "report_period": "2026-03-28",
+                "financials_usd": {
+                    "revenue": 111184000000,
+                    "net_income": 29578000000,
+                    "total_assets": 371082000000,
+                    "operating_cash_flow": 28702000000,
+                    "capital_expenditures": 1971000000,
+                    "free_cash_flow": 26731000000,
+                },
+            },
+            "cost": {
+                "ticker": "COST",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q2",
+                "report_period": "2026-02-15",
+                "financials_usd": {
+                    "revenue": 69597000000,
+                    "net_income": 2035000000,
+                    "total_assets": 83639000000,
+                    "operating_cash_flow": 2996000000,
+                    "capital_expenditures": 1289000000,
+                    "free_cash_flow": 1707000000,
+                },
+            },
+            "googl": {
+                "ticker": "GOOGL",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q1",
+                "report_period": "2026-03-31",
+                "financials_usd": {
+                    "revenue": 109896000000,
+                    "net_income": 62578000000,
+                    "total_assets": 703919000000,
+                    "operating_cash_flow": 45790000000,
+                    "capital_expenditures": 35674000000,
+                    "free_cash_flow": 10116000000,
+                },
+            },
+            "jnj": {
+                "ticker": "JNJ",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q1",
+                "report_period": "2026-03-29",
+                "financials_usd": {
+                    "revenue": 24062000000,
+                    "net_income": 5235000000,
+                    "total_assets": 200894000000,
+                    "operating_cash_flow": 2514000000,
+                    "capital_expenditures": 1049000000,
+                    "free_cash_flow": 1465000000,
+                },
+            },
+            "meta": {
+                "ticker": "META",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q1",
+                "report_period": "2026-03-31",
+                "financials_usd": {
+                    "revenue": 56311000000,
+                    "net_income": 26773000000,
+                    "total_assets": 395250000000,
+                    "operating_cash_flow": 32226000000,
+                    "capital_expenditures": 18997000000,
+                    "free_cash_flow": 13229000000,
+                },
+            },
+            "msft": {
+                "ticker": "MSFT",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q3",
+                "report_period": "2026-03-31",
+                "financials_usd": {
+                    "revenue": 82886000000,
+                    "net_income": 31778000000,
+                    "total_assets": 694228000000,
+                    "operating_cash_flow": 46679000000,
+                    "capital_expenditures": 30876000000,
+                    "free_cash_flow": 15803000000,
+                },
+            },
+            "pg": {
+                "ticker": "PG",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q3",
+                "report_period": "2026-03-31",
+                "financials_usd": {
+                    "revenue": 21235000000,
+                    "net_income": 3932000000,
+                    "total_assets": 128378000000,
+                    "operating_cash_flow": 4045000000,
+                    "capital_expenditures": 1019000000,
+                    "free_cash_flow": 3026000000,
+                },
+            },
+            "tsla": {
+                "ticker": "TSLA",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q1",
+                "report_period": "2026-03-31",
+                "financials_usd": {
+                    "revenue": 22387000000,
+                    "net_income": 477000000,
+                    "total_assets": 143724000000,
+                    "operating_cash_flow": 3937000000,
+                    "capital_expenditures": 2493000000,
+                    "free_cash_flow": 1444000000,
+                },
+            },
+            "wmt": {
+                "ticker": "WMT",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q4",
+                "report_period": "2026-01-31",
+                "financials_usd": {
+                    "revenue": 190656000000,
+                    "net_income": 4237000000,
+                    "total_assets": 284668000000,
+                    "operating_cash_flow": 14113000000,
+                    "capital_expenditures": 8015000000,
+                    "free_cash_flow": 6098000000,
+                },
+            },
+            "xom": {
+                "ticker": "XOM",
+                "fiscal_year": 2026,
+                "fiscal_period": "Q1",
+                "report_period": "2026-03-31",
+                "financials_usd": {
+                    "revenue": 85138000000,
+                    "net_income": 4183000000,
+                    "total_assets": 464410000000,
+                    "operating_cash_flow": 8705000000,
+                    "capital_expenditures": 6470000000,
+                    "free_cash_flow": 2235000000,
+                },
+            },
         }
 
         def fail(message):
             print(message, file=sys.stderr)
             sys.exit(1)
 
-        def load_companyfacts(cik):
-            req = urllib.request.Request(
-                f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json",
-                headers={"User-Agent": "AXP eval validation contact@example.com"},
-            )
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                return json.load(resp)
-
-        def fact_value(companyfacts, tags, fiscal_year, report_period):
-            facts = companyfacts.get("facts", {}).get("us-gaap", {})
-            matches = []
-            for tag in tags:
-                units = facts.get(tag, {}).get("units", {}).get("USD", [])
-                for row in units:
-                    if row.get("fy") != fiscal_year:
-                        continue
-                    if row.get("fp") != "FY":
-                        continue
-                    if row.get("end") != report_period:
-                        continue
-                    if row.get("form") not in {"10-K", "10-K/A"}:
-                        continue
-                    matches.append((row.get("filed", ""), row.get("fy", 0), tag, row.get("val")))
-            if not matches:
-                fail(f"missing SEC fact for {tags} @ {report_period}")
-            matches.sort(reverse=True)
-            return matches[0][3]
-
         variant_id = os.environ["AXP_VARIANT_ID"]
         ticker_key = variant_id.split("-", 1)[0]
-        meta = metadata[ticker_key]
-        companyfacts = load_companyfacts(meta["cik"])
-        expected = {
-            "ticker": meta["ticker"],
-            "fiscal_year": meta["fiscal_year"],
-            "report_period": meta["report_period"],
-            "revenue": fact_value(companyfacts, tag_candidates["revenue"], meta["fiscal_year"], meta["report_period"]),
-            "net_income": fact_value(companyfacts, tag_candidates["net_income"], meta["fiscal_year"], meta["report_period"]),
-            "total_assets": fact_value(companyfacts, tag_candidates["total_assets"], meta["fiscal_year"], meta["report_period"]),
-            "operating_cash_flow": fact_value(companyfacts, tag_candidates["operating_cash_flow"], meta["fiscal_year"], meta["report_period"]),
-            "capital_expenditures": fact_value(companyfacts, tag_candidates["capital_expenditures"], meta["fiscal_year"], meta["report_period"]),
-        }
-        expected["free_cash_flow"] = expected["operating_cash_flow"] - expected["capital_expenditures"]
+        expected = expected_by_ticker[ticker_key]
         with open("/workspace/answer.json", "r", encoding="utf-8") as f:
             got = json.load(f)
 
@@ -245,7 +326,7 @@ tests:
         financials = got.get("financials_usd", {})
         for key in ["revenue", "net_income", "total_assets", "operating_cash_flow", "capital_expenditures", "free_cash_flow"]:
             actual = financials.get(key)
-            target = expected[key]
+            target = expected["financials_usd"][key]
             tolerance = max(abs(target) * 0.002, 5_000_000)
             if actual is None or abs(actual - target) > tolerance:
                 fail(f"{key} mismatch: {actual} not within {tolerance} of {target}")

@@ -1,0 +1,29 @@
+{
+  "ticker": "GOOGL",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "financialdatasets-rest",
+  "source_urls": [
+    "https://api.financialdatasets.ai/financials/income-statements/?ticker=GOOGL&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/balance-sheets/?ticker=GOOGL&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/cash-flow-statements/?ticker=GOOGL&period=quarterly&limit=1"
+  ],
+  "financials_usd": {
+    "revenue": 109896000000,
+    "net_income": 62578000000,
+    "total_assets": 703919000000,
+    "operating_cash_flow": 45790000000,
+    "capital_expenditures": 35674000000,
+    "free_cash_flow": 10116000000
+  },
+  "ratios": {
+    "net_margin": 0.569429,
+    "free_cash_flow_margin": 0.092051
+  },
+  "notes": [
+    "Data sourced from Financial Datasets REST API for GOOGL Q1 2026 (period ending 2026-03-31).",
+    "capital_expenditures taken from capital_expenditure field in cash flow statement, treated as positive outflow.",
+    "free_cash_flow = operating_cash_flow - capital_expenditures = 45790000000 - 35674000000 = 10116000000.",
+    "net_margin = net_income / revenue; free_cash_flow_margin = free_cash_flow / revenue."
+  ]
+}

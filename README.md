@@ -5,6 +5,7 @@ Personal evaluation project for comparing Financial Datasets REST API usage agai
 ## Contents
 
 - `examples/financialdatasets-vs-edgar-normalized-financials.yaml` — 10-stock paired scenario.
+- `examples/financialdatasets-vs-edgar-latest-reported-financials.yaml` — 10-stock paired scenario for the latest reported quarterly earnings period.
 - `examples/financialdatasets-vs-edgar-normalized-financials-smoke-cost-fd.yaml` — single-variant smoke scenario.
 - `scripts/validate-financialdatasets-edgar-run.py` — post-run validator for paired Financial Datasets vs EDGAR outputs, cost, and duration.
 

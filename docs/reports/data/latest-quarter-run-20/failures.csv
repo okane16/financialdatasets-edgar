@@ -1,0 +1,5 @@
+variant_id,run_group_id,ticker,provider,test_name,field,actual,expected,message
+cost-financialdatasets-rest,01KRNZ49P6ZEG4QE024SD6AJEC,COST,Financial Datasets,financial-values-match,report_period,2025-11-23,2026-02-15,report_period mismatch: 2025-11-23 != 2026-02-15
+meta-sec-edgar,01KRNZ9K97KE12NRD29CVKWPS4,META,SEC EDGAR,financial-values-match,capital_expenditures,19840000000,18997000000,capital_expenditures mismatch: 19840000000 not within 37994000.0 of 18997000000
+tsla-sec-edgar,01KRNZDSR2Q88XCTMG4C9MZHPJ,TSLA,SEC EDGAR,financial-values-match,net_income,491000000,477000000,net_income mismatch: 491000000 not within 5000000 of 477000000
+wmt-financialdatasets-rest,01KRNZE5Q1RSXTN1G77FSBCTC4,WMT,Financial Datasets,financial-values-match,report_period,2025-10-31,2026-01-31,report_period mismatch: 2025-10-31 != 2026-01-31

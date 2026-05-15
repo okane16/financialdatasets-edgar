@@ -1,0 +1,31 @@
+{
+  "ticker": "AAPL",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-28",
+  "source_kind": "financialdatasets-rest",
+  "source_urls": [
+    "https://api.financialdatasets.ai/financials/income-statements/?ticker=AAPL&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/balance-sheets/?ticker=AAPL&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/cash-flow-statements/?ticker=AAPL&period=quarterly&limit=4"
+  ],
+  "financials_usd": {
+    "revenue": 111184000000,
+    "net_income": 29578000000,
+    "total_assets": 371082000000,
+    "operating_cash_flow": 28702000000,
+    "capital_expenditures": 1971000000,
+    "free_cash_flow": 26731000000
+  },
+  "ratios": {
+    "net_margin": 0.266027,
+    "free_cash_flow_margin": 0.240421
+  },
+  "notes": [
+    "Fiscal period: 2026-Q2, ending 2026-03-28 (Apple FY2026 Q2, Jan-Mar 2026).",
+    "Revenue and net_income are standalone quarterly from the income statement.",
+    "Total assets from balance sheet as of 2026-03-28.",
+    "The Financial Datasets API returns cumulative YTD cash flows for interim quarters (consistent with SEC 10-Q presentation). Standalone Q2 OCF and CapEx computed by subtracting Q1 FY2026 values (ending 2025-12-27): OCF = 82,627M - 53,925M = 28,702M; CapEx = 4,344M - 2,373M = 1,971M.",
+    "free_cash_flow = operating_cash_flow - capital_expenditures = 28,702M - 1,971M = 26,731M.",
+    "capital_expenditures treated as positive cash outflow per task instructions."
+  ]
+}

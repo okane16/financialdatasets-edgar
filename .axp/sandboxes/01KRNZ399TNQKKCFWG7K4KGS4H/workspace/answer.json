@@ -1,0 +1,33 @@
+{
+  "ticker": "TSLA",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "sec-edgar",
+  "source_urls": [
+    "https://data.sec.gov/submissions/CIK0001318605.json",
+    "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/",
+    "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/R2.htm",
+    "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/R4.htm",
+    "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/R8.htm"
+  ],
+  "financials_usd": {
+    "revenue": 22387000000,
+    "net_income": 491000000,
+    "total_assets": 143724000000,
+    "operating_cash_flow": 3937000000,
+    "capital_expenditures": 2493000000,
+    "free_cash_flow": 1444000000
+  },
+  "ratios": {
+    "net_margin": 0.021932,
+    "free_cash_flow_margin": 0.064502
+  },
+  "notes": [
+    "Data from Tesla's 10-Q filed 2026-04-23 for Q1 2026 (3 months ended March 31, 2026), accession 0001628280-26-026673.",
+    "Revenue is total revenues ($22,387M) for the quarter.",
+    "Net income is the consolidated figure ($491M) including noncontrolling interests; $477M attributable to common stockholders.",
+    "Total assets as of March 31, 2026 from the consolidated balance sheet.",
+    "Capital expenditures ($2,493M) are 'purchases of property and equipment excluding finance leases, net of sales', treated as positive outflow.",
+    "Free cash flow = operating cash flow ($3,937M) - capital expenditures ($2,493M) = $1,444M."
+  ]
+}

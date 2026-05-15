@@ -1,0 +1,14 @@
+{
+  "sandbox_id": "01KRNZ36TMYYBD4AP2BKHY9M5J",
+  "backend": "local",
+  "container_id": "1fc0234bb743721e46b2e1a7751f05b1c05b5f5b4dfb5a30be38deedaff1bdfc",
+  "scenario_id": "financialdatasets-vs-edgar-latest-reported-financials",
+  "variant_id": "meta-sec-edgar",
+  "scenario_path": "examples/financialdatasets-vs-edgar-latest-reported-financials.yaml",
+  "resolved_variant_path": "./.axp/sandboxes/01KRNZ36TMYYBD4AP2BKHY9M5J/resolved-variant.yaml",
+  "image_tag": "axp-base:0.2.0",
+  "host_workspace": "/Users/oliviakane/evals/financialdatasets-edgar/.axp/sandboxes/01KRNZ36TMYYBD4AP2BKHY9M5J/workspace",
+  "last_run_group_id": "01KRNZ9K97KE12NRD29CVKWPS4",
+  "state": "ran",
+  "created_at": "2026-05-15T14:01:54.897816Z"
+}

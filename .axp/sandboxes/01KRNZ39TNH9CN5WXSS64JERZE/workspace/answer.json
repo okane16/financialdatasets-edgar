@@ -1,0 +1,31 @@
+{
+  "ticker": "PG",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "financialdatasets-rest",
+  "source_urls": [
+    "https://api.financialdatasets.ai/financials/income-statements/?ticker=PG&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/balance-sheets/?ticker=PG&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/cash-flow-statements/?ticker=PG&period=quarterly&limit=4"
+  ],
+  "financials_usd": {
+    "revenue": 21235000000,
+    "net_income": 3932000000,
+    "total_assets": 128378000000,
+    "operating_cash_flow": 4045000000,
+    "capital_expenditures": 1019000000,
+    "free_cash_flow": 3026000000
+  },
+  "ratios": {
+    "net_margin": 0.185166,
+    "free_cash_flow_margin": 0.142501
+  },
+  "notes": [
+    "Data sourced from Financial Datasets REST API for PG (Procter & Gamble), fiscal period 2026-Q3 (3 months ending 2026-03-31).",
+    "Income statement and balance sheet figures are single-quarter values as returned by the API.",
+    "Cash flow figures in 10-Q filings are reported as YTD cumulative; quarterly OCF and CapEx computed by subtracting Q2 YTD values (ending 2025-12-31) from Q3 YTD values (ending 2026-03-31).",
+    "Quarterly OCF = 14,425,000,000 (Q3 YTD) - 10,380,000,000 (Q2 YTD) = 4,045,000,000.",
+    "Quarterly CapEx = 3,386,000,000 (Q3 YTD) - 2,367,000,000 (Q2 YTD) = 1,019,000,000 (treated as positive outflow).",
+    "Free cash flow = operating_cash_flow - capital_expenditures = 4,045,000,000 - 1,019,000,000 = 3,026,000,000."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "ticker": "MSFT",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "sec-edgar",
+  "source_urls": [
+    "https://data.sec.gov/submissions/CIK0000789019.json",
+    "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/0001193125-26-191507-index.htm",
+    "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+  ],
+  "financials_usd": {
+    "revenue": 82886000000,
+    "net_income": 31778000000,
+    "total_assets": 694228000000,
+    "operating_cash_flow": 46679000000,
+    "capital_expenditures": 30876000000,
+    "free_cash_flow": 15803000000
+  },
+  "ratios": {
+    "net_margin": 0.383394,
+    "free_cash_flow_margin": 0.190659
+  },
+  "notes": [
+    "Data sourced from SEC EDGAR XBRL company facts API for Microsoft (CIK 0000789019)",
+    "Most recent 10-Q filing: Q3 FY2026 (quarter ended March 31, 2026), accession number 0001193125-26-191507",
+    "Microsoft fiscal year runs July-June; Q3 FY2026 covers January 1 - March 31, 2026",
+    "Revenue uses RevenueFromContractWithCustomerExcludingAssessedTax XBRL concept",
+    "Capital expenditures sourced from PaymentsToAcquirePropertyPlantAndEquipment (positive outflow)",
+    "Free cash flow = operating_cash_flow - capital_expenditures = 46679000000 - 30876000000 = 15803000000",
+    "Total assets is point-in-time snapshot as of 2026-03-31"
+  ]
+}

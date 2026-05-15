@@ -1,0 +1,28 @@
+{
+  "ticker": "AAPL",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-28",
+  "source_kind": "financialdatasets-rest",
+  "source_urls": [
+    "https://api.financialdatasets.ai/financials/?ticker=AAPL&period=quarterly&limit=1"
+  ],
+  "financials_usd": {
+    "revenue": 111184000000,
+    "net_income": 29578000000,
+    "total_assets": 371082000000,
+    "operating_cash_flow": 82627000000,
+    "capital_expenditures": 4344000000,
+    "free_cash_flow": 78283000000
+  },
+  "ratios": {
+    "net_margin": 0.266027,
+    "free_cash_flow_margin": 0.704085
+  },
+  "notes": [
+    "Data sourced from Financial Datasets REST API for AAPL fiscal Q2 2026 (period ending 2026-03-28).",
+    "Revenue and net income reflect the standalone Q2 quarterly values as reported.",
+    "Operating cash flow and capital expenditures are fiscal-year-to-date (Q1+Q2) per Apple's 10-Q filing convention.",
+    "Free cash flow computed as operating_cash_flow - capital_expenditures.",
+    "Net margin and free_cash_flow_margin computed against Q2 standalone revenue."
+  ]
+}

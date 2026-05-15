@@ -1,0 +1,30 @@
+{
+  "ticker": "TSLA",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "financialdatasets-rest",
+  "source_urls": [
+    "https://api.financialdatasets.ai/financials/income-statements/?ticker=TSLA&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/balance-sheets/?ticker=TSLA&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/cash-flow-statements/?ticker=TSLA&period=quarterly&limit=1"
+  ],
+  "financials_usd": {
+    "revenue": 22387000000,
+    "net_income": 477000000,
+    "total_assets": 143724000000,
+    "operating_cash_flow": 3937000000,
+    "capital_expenditures": 2493000000,
+    "free_cash_flow": 1444000000
+  },
+  "ratios": {
+    "net_margin": 0.021308,
+    "free_cash_flow_margin": 0.064502
+  },
+  "notes": [
+    "Data sourced from Financial Datasets REST API for TSLA Q1 2026 (period ending 2026-03-31).",
+    "capital_expenditures taken as positive outflow from cash_flow_statements capital_expenditure field.",
+    "free_cash_flow = operating_cash_flow (3,937,000,000) - capital_expenditures (2,493,000,000) = 1,444,000,000.",
+    "net_margin = net_income / revenue = 477,000,000 / 22,387,000,000 = 0.021308.",
+    "free_cash_flow_margin = free_cash_flow / revenue = 1,444,000,000 / 22,387,000,000 = 0.064502."
+  ]
+}

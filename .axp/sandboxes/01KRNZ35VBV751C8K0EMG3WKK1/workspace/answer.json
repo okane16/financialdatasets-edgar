@@ -1,0 +1,32 @@
+{
+  "ticker": "GOOGL",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "sec-edgar",
+  "source_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1652044&type=10-Q&dateb=&owner=include&count=10"
+  ],
+  "financials_usd": {
+    "revenue": 109896000000,
+    "net_income": 62578000000,
+    "total_assets": 703919000000,
+    "operating_cash_flow": 45790000000,
+    "capital_expenditures": 35674000000,
+    "free_cash_flow": 10116000000
+  },
+  "ratios": {
+    "net_margin": 0.569429,
+    "free_cash_flow_margin": 0.092051
+  },
+  "notes": [
+    "Source: Alphabet Inc. 10-Q filed April 30, 2026, accession 0001652044-26-000048, for quarter ended March 31, 2026 (Q1 FY2026).",
+    "Alphabet reports in millions USD; all values multiplied by 1,000,000 for full dollar amounts.",
+    "Revenue and net income from Consolidated Statements of Income (three months ended March 31, 2026).",
+    "Total assets from Consolidated Balance Sheet as of March 31, 2026.",
+    "Operating cash flow is 'Net cash provided by operating activities' from the Consolidated Statements of Cash Flows.",
+    "Capital expenditures are 'Purchases of property and equipment' (presented as positive outflow).",
+    "Net income of $62.6B includes a ~$36.8B non-cash gain on debt and equity securities in Other income (expense), net.",
+    "free_cash_flow = operating_cash_flow - capital_expenditures = 45790M - 35674M = 10116M."
+  ]
+}

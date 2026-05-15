@@ -1,0 +1,31 @@
+{
+  "ticker": "META",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "financialdatasets-rest",
+  "source_urls": [
+    "https://api.financialdatasets.ai/financials/income-statements/?ticker=META&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/balance-sheets/?ticker=META&period=quarterly&limit=1",
+    "https://api.financialdatasets.ai/financials/cash-flow-statements/?ticker=META&period=quarterly&limit=1"
+  ],
+  "financials_usd": {
+    "revenue": 56311000000,
+    "net_income": 26773000000,
+    "total_assets": 395250000000,
+    "operating_cash_flow": 32226000000,
+    "capital_expenditures": 18997000000,
+    "free_cash_flow": 13229000000
+  },
+  "ratios": {
+    "net_margin": 0.475449,
+    "free_cash_flow_margin": 0.234927
+  },
+  "notes": [
+    "Most recent quarterly filing: META Q1 2026 (fiscal_period 2026-Q1), report_period 2026-03-31, accession 0001628280-26-028526.",
+    "Revenue, net_income, total_assets, and cash flows taken directly from Financial Datasets REST API quarterly endpoints.",
+    "capital_expenditures sourced from cash_flow_statements.capital_expenditure field, treated as positive outflow.",
+    "free_cash_flow = operating_cash_flow - capital_expenditures = 32226000000 - 18997000000 = 13229000000.",
+    "net_margin = net_income / revenue = 26773000000 / 56311000000 = 0.475449.",
+    "free_cash_flow_margin = free_cash_flow / revenue = 13229000000 / 56311000000 = 0.234927."
+  ]
+}

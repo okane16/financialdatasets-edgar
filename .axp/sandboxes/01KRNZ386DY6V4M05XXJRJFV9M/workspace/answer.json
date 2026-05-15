@@ -1,0 +1,30 @@
+{
+  "ticker": "XOM",
+  "fiscal_year": 2026,
+  "report_period": "2026-03-31",
+  "source_kind": "sec-edgar",
+  "source_urls": [
+    "https://data.sec.gov/submissions/CIK0000034088.json",
+    "https://data.sec.gov/api/xbrl/companyfacts/CIK0000034088.json",
+    "https://www.sec.gov/Archives/edgar/data/34088/000003408826000067/0000034088-26-000067-index.html",
+    "https://www.sec.gov/Archives/edgar/data/34088/000003408826000067/xom-20260331.htm"
+  ],
+  "financials_usd": {
+    "revenue": 85138000000,
+    "net_income": 4183000000,
+    "total_assets": 464410000000,
+    "operating_cash_flow": 8705000000,
+    "capital_expenditures": 6470000000,
+    "free_cash_flow": 2235000000
+  },
+  "ratios": {
+    "net_margin": 0.049132,
+    "free_cash_flow_margin": 0.026251
+  },
+  "notes": [
+    "Source: SEC EDGAR 10-Q filed 2026-05-04 (accession 0000034088-26-000067) for Q1 2026 ending 2026-03-31.",
+    "Revenue from us-gaap/Revenues (CY2026Q1); net income from NetIncomeLoss; total assets from Assets (point-in-time); operating cash flow from NetCashProvidedByUsedInOperatingActivities; capex from PaymentsToAcquirePropertyPlantAndEquipment.",
+    "Free cash flow = operating_cash_flow - capital_expenditures = 8,705,000,000 - 6,470,000,000 = 2,235,000,000.",
+    "All values sourced directly from XBRL inline data in the 10-Q filing via SEC EDGAR XBRL API."
+  ]
+}
