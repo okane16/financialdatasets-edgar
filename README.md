@@ -21,6 +21,16 @@ cp .env.example .env
 
 ## Run
 
+**Sandbox smoke** (no fixtures, one variant — use this to verify Docker/AXP first):
+
+```sh
+docker pull 514labs/axp-base:0.3.3-rp
+axp validate experiments/hello-world.yaml
+op run --env-file=.env -- axp run experiments/hello-world.yaml -j 1
+```
+
+**Full benchmark** (20 variants):
+
 ```sh
 docker pull 514labs/axp-base:0.3.3-rp   # recommended before first run
 

@@ -1,0 +1,27 @@
+schema_version: 1
+id: hello-world
+name: "AXP sandbox smoke — write hello.txt"
+flow:
+  prompt: |
+    Write exactly this one line to /workspace/hello.txt:
+
+    hello
+
+    Do not create any other files. Do not add explanation in the workspace.
+matrix:
+  variant:
+    - id: default
+      tag: default
+model: claude-sonnet-4-6
+tests:
+  application:
+    - name: hello-exists
+      script: |
+        test -f /workspace/hello.txt
+    - name: hello-content
+      script: |
+        grep -qxF 'hello' /workspace/hello.txt
+limits:
+  max_turns: 5
+  max_time_seconds: 120
+  max_cost_usd: 0.25

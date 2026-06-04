@@ -8,6 +8,7 @@
 .axp/sandboxes/
 .axp/builds/
 .axp/downloads/
+axp-debug-*.tgz
 
 # Python
 __pycache__/
