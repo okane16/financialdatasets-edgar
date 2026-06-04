@@ -1,0 +1,230 @@
+{
+  "as_of_date": "2026-06-03",
+  "grading": {
+    "min_correct": 5,
+    "relative_tolerance": 0.002,
+    "absolute_tolerance_usd": 5000000
+  },
+  "expected_by_ticker": {
+    "aapl": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q2",
+        "report_period": "2026-03-28",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 111184000000,
+          "net_income": 29578000000
+        },
+        "balance_sheet": {
+          "total_assets": 371082000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 28702000000,
+          "capital_expenditures": 1971000000,
+          "free_cash_flow": 26731000000
+        }
+      }
+    },
+    "cost": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q3",
+        "report_period": "2026-05-10",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 70527000000,
+          "net_income": 2192000000
+        },
+        "balance_sheet": {
+          "total_assets": 86430000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 3449000000,
+          "capital_expenditures": 1413000000,
+          "free_cash_flow": 2036000000
+        }
+      }
+    },
+    "googl": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 109896000000,
+          "net_income": 62578000000
+        },
+        "balance_sheet": {
+          "total_assets": 703919000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 45790000000,
+          "capital_expenditures": 35674000000,
+          "free_cash_flow": 10116000000
+        }
+      }
+    },
+    "jnj": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-29",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 24062000000,
+          "net_income": 5235000000
+        },
+        "balance_sheet": {
+          "total_assets": 200894000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 2514000000,
+          "capital_expenditures": 1049000000,
+          "free_cash_flow": 1465000000
+        }
+      }
+    },
+    "meta": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 56311000000,
+          "net_income": 26773000000
+        },
+        "balance_sheet": {
+          "total_assets": 395250000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 32226000000,
+          "capital_expenditures": 18997000000,
+          "free_cash_flow": 13229000000
+        }
+      }
+    },
+    "msft": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q3",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 82886000000,
+          "net_income": 31778000000
+        },
+        "balance_sheet": {
+          "total_assets": 694228000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 46679000000,
+          "capital_expenditures": 30876000000,
+          "free_cash_flow": 15803000000
+        }
+      }
+    },
+    "pg": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q3",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 21235000000,
+          "net_income": 3860000000
+        },
+        "balance_sheet": {
+          "total_assets": 128378000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 4045000000,
+          "capital_expenditures": 1019000000,
+          "free_cash_flow": 3026000000
+        }
+      }
+    },
+    "tsla": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 22387000000,
+          "net_income": 477000000
+        },
+        "balance_sheet": {
+          "total_assets": 143724000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 3937000000,
+          "capital_expenditures": 2493000000,
+          "free_cash_flow": 1444000000
+        }
+      }
+    },
+    "wmt": {
+      "period": {
+        "fiscal_year": 2027,
+        "fiscal_period": "Q1",
+        "report_period": "2026-04-30",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 177751000000,
+          "net_income": 5330000000
+        },
+        "balance_sheet": {
+          "total_assets": 289607000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 4738000000,
+          "capital_expenditures": 6684000000,
+          "free_cash_flow": -1946000000
+        }
+      }
+    },
+    "xom": {
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "core_values": {
+        "income_statement": {
+          "revenue": 83161000000,
+          "net_income": 4183000000
+        },
+        "balance_sheet": {
+          "total_assets": 464410000000
+        },
+        "cash_flow": {
+          "operating_cash_flow": 8705000000,
+          "capital_expenditures": 6470000000,
+          "free_cash_flow": 2235000000
+        }
+      }
+    }
+  }
+}

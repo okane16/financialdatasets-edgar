@@ -1,0 +1,562 @@
+{
+  "as_of_date": "2026-06-03",
+  "yahoo_checked_at": "2026-06-03",
+  "yahoo_source": "query1.finance.yahoo.com/ws/fundamentals-timeseries/v1 (quarterly metrics; CapEx stored as absolute spend)",
+  "period_match_max_day_gap": 14,
+  "grading": {
+    "min_correct": 5,
+    "relative_tolerance": 0.002,
+    "absolute_tolerance_usd": 5000000
+  },
+  "tickers": {
+    "aapl": {
+      "symbol": "AAPL",
+      "report_period": "2026-03-28",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q2",
+        "report_period": "2026-03-28",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/AAPL/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/AAPL/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/AAPL/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 111184000000,
+          "fixture": 111184000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 29578000000,
+          "fixture": 29578000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 371082000000,
+          "fixture": 371082000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 28702000000,
+          "fixture": 28702000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 1971000000,
+          "fixture": 1971000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 26731000000,
+          "fixture": 26731000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": [
+        "Yahoo column 2026-03-31 used (3 day(s) from report_period 2026-03-28)"
+      ]
+    },
+    "cost": {
+      "symbol": "COST",
+      "report_period": "2026-05-10",
+      "yahoo_as_of_date": null,
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q3",
+        "report_period": "2026-05-10",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/COST/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/COST/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/COST/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": null,
+          "fixture": 70527000000,
+          "match": null,
+          "delta_usd": null,
+          "notes": "No Yahoo row within 14 days of 2026-05-10; latest available: ['2026-02-28', '2025-11-30', '2025-08-31']"
+        },
+        "income_statement.net_income": {
+          "yahoo": null,
+          "fixture": 2192000000,
+          "match": null,
+          "delta_usd": null,
+          "notes": "No Yahoo row within 14 days of 2026-05-10; latest available: ['2026-02-28', '2025-11-30', '2025-08-31']"
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": null,
+          "fixture": 86430000000,
+          "match": null,
+          "delta_usd": null,
+          "notes": "No Yahoo row within 14 days of 2026-05-10; latest available: ['2026-02-28', '2025-11-30', '2025-08-31']"
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": null,
+          "fixture": 3449000000,
+          "match": null,
+          "delta_usd": null,
+          "notes": "No Yahoo row within 14 days of 2026-05-10; latest available: ['2026-02-28', '2025-11-30', '2025-08-31']"
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": null,
+          "fixture": 1413000000,
+          "match": null,
+          "delta_usd": null,
+          "notes": "No Yahoo row within 14 days of 2026-05-10; latest available: ['2026-02-28', '2025-11-30', '2025-08-31']"
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": null,
+          "fixture": 2036000000,
+          "match": null,
+          "delta_usd": null,
+          "notes": "No Yahoo row within 14 days of 2026-05-10; latest available: ['2026-02-28', '2025-11-30', '2025-08-31']"
+        }
+      },
+      "notes": [
+        "No Yahoo row within 14 days of 2026-05-10; latest available: ['2026-02-28', '2025-11-30', '2025-08-31']"
+      ]
+    },
+    "googl": {
+      "symbol": "GOOGL",
+      "report_period": "2026-03-31",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/GOOGL/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/GOOGL/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/GOOGL/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 109896000000,
+          "fixture": 109896000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 62578000000,
+          "fixture": 62578000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 703919000000,
+          "fixture": 703919000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 45790000000,
+          "fixture": 45790000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 35674000000,
+          "fixture": 35674000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 10116000000,
+          "fixture": 10116000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": []
+    },
+    "jnj": {
+      "symbol": "JNJ",
+      "report_period": "2026-03-29",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-29",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/JNJ/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/JNJ/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/JNJ/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 24062000000,
+          "fixture": 24062000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 5235000000,
+          "fixture": 5235000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 200894000000,
+          "fixture": 200894000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 2514000000,
+          "fixture": 2514000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 1049000000,
+          "fixture": 1049000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 1465000000,
+          "fixture": 1465000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": [
+        "Yahoo column 2026-03-31 used (2 day(s) from report_period 2026-03-29)"
+      ]
+    },
+    "meta": {
+      "symbol": "META",
+      "report_period": "2026-03-31",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/META/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/META/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/META/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 56311000000,
+          "fixture": 56311000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 26773000000,
+          "fixture": 26773000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 395250000000,
+          "fixture": 395250000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 32226000000,
+          "fixture": 32226000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 18997000000,
+          "fixture": 18997000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 13229000000,
+          "fixture": 13229000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": []
+    },
+    "msft": {
+      "symbol": "MSFT",
+      "report_period": "2026-03-31",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q3",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/MSFT/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/MSFT/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/MSFT/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 82886000000,
+          "fixture": 82886000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 31778000000,
+          "fixture": 31778000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 694228000000,
+          "fixture": 694228000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 46679000000,
+          "fixture": 46679000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 30876000000,
+          "fixture": 30876000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 15803000000,
+          "fixture": 15803000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": []
+    },
+    "pg": {
+      "symbol": "PG",
+      "report_period": "2026-03-31",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q3",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/PG/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/PG/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/PG/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 21235000000,
+          "fixture": 21235000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 3860000000,
+          "fixture": 3860000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 128378000000,
+          "fixture": 128378000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 4045000000,
+          "fixture": 4045000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 1019000000,
+          "fixture": 1019000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 3026000000,
+          "fixture": 3026000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": []
+    },
+    "tsla": {
+      "symbol": "TSLA",
+      "report_period": "2026-03-31",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/TSLA/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/TSLA/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/TSLA/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 22387000000,
+          "fixture": 22387000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 477000000,
+          "fixture": 477000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 143724000000,
+          "fixture": 143724000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 3937000000,
+          "fixture": 3937000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 2493000000,
+          "fixture": 2493000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 1444000000,
+          "fixture": 1444000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": []
+    },
+    "wmt": {
+      "symbol": "WMT",
+      "report_period": "2026-04-30",
+      "yahoo_as_of_date": "2026-04-30",
+      "period": {
+        "fiscal_year": 2027,
+        "fiscal_period": "Q1",
+        "report_period": "2026-04-30",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/WMT/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/WMT/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/WMT/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 177751000000,
+          "fixture": 177751000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 5330000000,
+          "fixture": 5330000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 289607000000,
+          "fixture": 289607000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 4738000000,
+          "fixture": 4738000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 6684000000,
+          "fixture": 6684000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": -1946000000,
+          "fixture": -1946000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": []
+    },
+    "xom": {
+      "symbol": "XOM",
+      "report_period": "2026-03-31",
+      "yahoo_as_of_date": "2026-03-31",
+      "period": {
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_period": "2026-03-31",
+        "period_type": "interim"
+      },
+      "yahoo_url": "https://finance.yahoo.com/quote/XOM/financials/?period=quarterly",
+      "yahoo_balance_sheet_url": "https://finance.yahoo.com/quote/XOM/balance-sheet/?period=quarterly",
+      "yahoo_cash_flow_url": "https://finance.yahoo.com/quote/XOM/cash-flow/?period=quarterly",
+      "metrics": {
+        "income_statement.revenue": {
+          "yahoo": 83161000000,
+          "fixture": 83161000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "income_statement.net_income": {
+          "yahoo": 4183000000,
+          "fixture": 4183000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "balance_sheet.total_assets": {
+          "yahoo": 464410000000,
+          "fixture": 464410000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.operating_cash_flow": {
+          "yahoo": 8705000000,
+          "fixture": 8705000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.capital_expenditures": {
+          "yahoo": 6470000000,
+          "fixture": 6470000000,
+          "match": true,
+          "delta_usd": 0
+        },
+        "cash_flow.free_cash_flow": {
+          "yahoo": 2235000000,
+          "fixture": 2235000000,
+          "match": true,
+          "delta_usd": 0
+        }
+      },
+      "notes": []
+    }
+  },
+  "summary": {
+    "match": 54,
+    "mismatch": 0,
+    "period_adjusted": 2,
+    "missing_yahoo": 6,
+    "errors": 0
+  }
+}

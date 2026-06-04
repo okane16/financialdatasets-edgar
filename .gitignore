@@ -1,8 +1,21 @@
+# Secrets
 .env
 .env.*
 !.env.example
 
+# AXP local runner artifacts
 .axp/runs/
+.axp/sandboxes/
+.axp/builds/
+.axp/downloads/
+
+# Python
 __pycache__/
 *.pyc
+.venv/
+.venv-*/
+venv/
+
+# OS / editor
 .DS_Store
+.cursor/

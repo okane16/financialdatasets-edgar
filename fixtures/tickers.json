@@ -1,0 +1,14 @@
+{
+  "tickers": {
+    "aapl": { "symbol": "AAPL", "cik": "0000320193" },
+    "cost": { "symbol": "COST", "cik": "0000909832" },
+    "googl": { "symbol": "GOOGL", "cik": "0001652044" },
+    "jnj": { "symbol": "JNJ", "cik": "0000200406" },
+    "meta": { "symbol": "META", "cik": "0001326801" },
+    "msft": { "symbol": "MSFT", "cik": "0000789019" },
+    "pg": { "symbol": "PG", "cik": "0000080424" },
+    "tsla": { "symbol": "TSLA", "cik": "0001318605" },
+    "wmt": { "symbol": "WMT", "cik": "0000104169" },
+    "xom": { "symbol": "XOM", "cik": "0000034088" }
+  }
+}

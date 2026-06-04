@@ -1,0 +1,73 @@
+{
+  "version": "latest-reporting-period-v1",
+  "grading": {
+    "min_correct": 5,
+    "relative_tolerance": 0.002,
+    "absolute_tolerance_usd": 5000000
+  },
+  "metrics": {
+    "income_statement": {
+      "revenue": {
+        "method": "cumulative_if_needed",
+        "tags": [
+          "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "SalesAndOtherOperatingRevenue",
+          "SalesRevenueNet",
+          "Revenues"
+        ],
+        "duration": "shortest"
+      },
+      "net_income": {
+        "method": "cumulative_if_needed",
+        "tags": [
+          "NetIncomeLossAvailableToCommonStockholdersBasic",
+          "NetIncomeLossAvailableToCommonStockholdersDiluted",
+          "NetIncomeLoss"
+        ],
+        "duration": "shortest"
+      }
+    },
+    "balance_sheet": {
+      "total_assets": {
+        "method": "direct",
+        "tags": ["Assets"],
+        "duration": "longest"
+      }
+    },
+    "cash_flow": {
+      "operating_cash_flow": {
+        "method": "cumulative_if_needed",
+        "tags": ["NetCashProvidedByUsedInOperatingActivities"],
+        "duration": "longest"
+      },
+      "capital_expenditures": {
+        "method": "cumulative_if_needed",
+        "tags": ["PaymentsToAcquirePropertyPlantAndEquipment"],
+        "duration": "longest"
+      },
+      "free_cash_flow": {
+        "method": "formula",
+        "formula": {
+          "op": "difference",
+          "minuend": "cash_flow.operating_cash_flow",
+          "subtrahend": "cash_flow.capital_expenditures"
+        }
+      }
+    }
+  },
+  "overrides": {
+    "xom": {
+      "income_statement": {
+        "revenue": {
+          "method": "filing_dimensional",
+          "tag": "Revenues",
+          "duration": "shortest",
+          "segment": {
+            "dimension": "srt:ProductOrServiceAxis",
+            "member": "SalesAndOtherOperatingRevenueMember"
+          }
+        }
+      }
+    }
+  }
+}
