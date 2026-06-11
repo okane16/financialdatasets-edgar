@@ -19,7 +19,6 @@ def fail(message: str) -> None:
 def bootstrap_scripts() -> None:
     search_roots = [
         Path("/workspace"),
-        Path("/opt/axp-eval"),
         Path.cwd(),
         *Path.cwd().parents,
     ]

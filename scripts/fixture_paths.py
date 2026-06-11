@@ -11,7 +11,6 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 def fixture_candidates(filename: str) -> list[Path]:
     return [
         Path("/workspace/fixtures") / filename,
-        Path("/opt/axp-eval/fixtures") / filename,
         REPO_ROOT / "fixtures" / filename,
         Path("fixtures") / filename,
     ]

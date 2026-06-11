@@ -1,4 +1,3 @@
-# Staging setup is generated — run: python3 scripts/sync-experiment-fixture-setup.py
 schema_version: 1
 id: financialdatasets-vs-edgar-latest-reported-financials
 name: "Compare Financial Datasets REST against SEC EDGAR for latest reporting period financial snapshots"
@@ -106,190 +105,80 @@ flow:
     - current_ratio = current_assets / current_liabilities.
     - debt_to_equity = total_debt / shareholders_equity.
 
+files:
+  - name: fixtures
+    source: ../fixtures
+    dest: fixtures
+  - name: eval-bootstrap
+    source: ../scripts/eval_bootstrap.py
+    dest: scripts/eval_bootstrap.py
+  - name: fixture-paths
+    source: ../scripts/fixture_paths.py
+    dest: scripts/fixture_paths.py
+  - name: ticker-registry
+    source: ../scripts/ticker_registry.py
+    dest: scripts/ticker_registry.py
+
 matrix:
   variant:
     - id: aapl-financialdatasets-rest
       tag: AAPL-financialdatasets-rest
-      overrides:
-        setup: &fixture_setup |
-          set -euo pipefail
-          python3 - <<'PY'
-          import base64, io, tarfile
-          from pathlib import Path
-          payload = "".join([
-              "H4sIANyyIGoC/+1dbXPbuBHOZ/0Klv1wUseS+E7KN2nrS3PpXZPYvaS93mQ8HJqCLMYUqSMo25qM",
-              "/3sX4BtIEXpJJMpnE5OJbXIBLBaL3QcLcjkYDoZ/v3Du/4mcMYpeHKRISeH9lCRVK34n12VJkZUX",
-              "wv2LBsoCx04E3b94nkWxhFnszdBL2bQkXYH/pIE2MmR9ZHVetOXJl4l3Hy8ihIe+EyMc9yM0D6PY",
-              "C677cxR54bjvhhEafMZh8G3r39CSNW4aerLWlWzNy6qimS9kXZHhV1kxYf0rsmqaLwSpyfUf+t6t",
-              "59w4AaqnA7LJ5OnN/5eOIIgOtsOJPQYNEE8FUZEUoy/BP1U8IXevI2cMCgG3CDFcmHmBDWoRITeG",
-              "i/pJcjVCoELeLbLj0EeRE7ikMWkAM50SOFc49BcxQ2Av8Ji0kCgCUD3QDtH9HJpGY/tqaceee4Oi",
-              "om/Hmfv5X/B3oqXMFbg28bDr+PYSOaQiGc7Jys28nvhvRWRuJ/rP3E6kofYViyVL7tvxck5F5gUx",
-              "XJiJKcFDRimS1WPfOv4C4TKPXuCGM2SDVsVohoK4dJfycYuCBWlchmJpiYhOWJIAxXbSDBnlSCe2",
-              "O5VjhQ0gvnJ8KnE8RWilsziMQSQOxigmbKqmLFnKmsZcB0/tiR/eVRsKQS4OsR42S6JYpqTUDMB1",
-              "5h7pmMx3MPaoHSIDHkH/q9STCKFys4apylUuO+zPlGeYBRzvWWnULZRG78vSkZTGJL58o87II2VP",
-              "KmMZmirtT2NUTRvtoDCarG6lMJJqbKUv12F4vW8rI29lZVT5WFZGGlkjY5PGGMr+rIwpqSN5tD+d",
-              "0XQzbW0rpVF1w9S20RqAJfJ2avM5+HwUpVFGR1IaRZMMZZPO6Iqq70lloC9rpO3RMemytoOZkWqN",
-              "0qrCaIa+lb7MUOw8LyujG6osb3RLhmmq+4IyI13R9+mYFEUxdlAZazQyt9IZaHi0ndLgyTGwzBGV",
-              "xlIsa6NnUmVzb57JGGmKYu3RMxmGuQOcUSXLNLZSGt2S1K2UZn79vFRGkXOns0ZlMq36do2RFUs1",
-              "96kxkqbv4pjkrRyTKinbAZkY+8/MMSmKam3cL2mmuS990VRT2SOQUUequb2+KNpI3Q7IaNpW+nI3",
-              "290lmd+sLlpfPdb2GpyNqW8EMrqq7svAKGRzZu7RwJiqtb3CGIa11VapL4+07SzMfTh7XgbGUmVj",
-              "o8JosrUv4KsZmibvEfiCddzBIxmaKW0VkanZG5b1hQSFOw/tUdShyuBRnP+qq+e/cnv+28j5r8me",
-              "/8oS2KnBSB7BfrRdc8/q/HeG4shz+/PQ91wP4W888t3h/FdSdUNKzn8B4cgGWf+Gqavt+W9j57+3",
-              "KMJeGBAMxHsM4FY+0mFwopcF7lqHuRi8xYA0aGGaoEB3MVukfHkTO0BojMYsHoyda9LRJxaz/JI0",
-              "+WMUzl6FQRw5bvyrF09fgd4AG9Hre9dfEImcAfKCf+OPzr1YAj0fHB/hs2B8Hk9RdJ6Bq7TZGtL0",
-              "znuAeCc1jGAxv3jJsD5ekHaTOcRTmDuYxVUgW0KbexMRsPoTbfRtiPHZreP5zpWPPoavwtksDD7E",
-              "oXszDX2AF/gHB3tueVjbV/6HRxRmvKb6V4imtCvhAewquK6V3Nija6BGVuJZUpHHlB8G11ye6nA6",
-              "B6N/04QSSb6Cxi6i8NYDmh+W/wFt/inINfbMhUa8GHzD1gMpNlD124RvY/jCWZL1jz+GZ+7vC5A+",
-              "sA7MxssLmMUYVtxruDqnJmJnhld2KrWsTsKI8Mpyl11a2VQlKjKZoAgRa1hSYrChC5ALHX3W56Bu",
-              "jku18OIKzNF0pWKtsNftr6idDcEJRDDxjKWtbNLXbnZrTW9ZWJ5PBjMGsBkQb+P45eHAvBKy3MyV",
-              "btau4bI00HXNDpxUzTqkdaP4FNRkvHDj8+gDim49F53de+XeKNuzK/rY0Xrz/S4hY+o+/ME2soP2",
-              "+d/2+d9s/6cZhi5ZA9kcWYqltRvA57T/Sx603Ou+b8v9nww3yf5PMk1N1mW4LuuqprT7v8b2f+nc",
-              "rz5lCw5zObsKye/i2dnFW/EEgIZ3Q/6kdluR5JEqrjxnyVZ7df7hY6XaSBpZqiKuPm7H1ntzfv6m",
-              "0p9sgJJomlh94Iqt9vP7nyu9KZKkSYa48tQNW+vd649nlb5UxbAkWVx57qJU7cOP1bGZ1ghkIlZO",
-              "3tlKF28qVSQwvAozquz0la308cPbFQZly5B0sXoIx9b69V2VPVnSZINhL4V4bKX/nb+rMqhqkmWJ",
-              "bTC+jf+3+O8p4z/6/pc1IE+fyIbZrvPnhP+WzjQM+24UYtyPUBqm2A8aXI//wPcpSv7+l0rWP7hs",
-              "vX3/qzn8t/79L6oZtjtFABLHthPzaXC4iGikX/x9gaKlPJh4AQmoDujtgRvOhnd4OFkEY4fEahwf",
-              "94ntwSjyQANvZaH7+8KJYhT5SyGN+38vvHLmr+8FHIcRGgsOFrKTAwGT8FYv6T99kmPmxO4U/r+H",
-              "wSzta2dOn2I6zsEFF1Rn8bQqtO7s8ApaKvC6iSs95PLY349LhrGIqBimcTzHp8Phqtb8vghjNCRi",
-              "Sm96oDvDvyW9vMyVpiqeUjx/p17Smn1ac3NHefB1p05IrT6pta6D6vlXbSh2wIm+0m7XvUOYmv91",
-              "JHRNAUEcLVA5Jov82EmVv/4ZoxU2OedPDKfMe4wcRnkU38BnSU8G3MMehk32FUkOn1ySb2B0/ekA",
-              "T6Sc1y8ZkXIo9sLpxrMfVk85r34WWlpPsBdG15z5sNIs3jrlSZNDsSuTq6e3YDnKh6/ib4QrwQWP",
-              "NAuEwv4LCwzOsqsK4Aa7uCdMonAmlEy3UNjtXmaWL9e+NFsN6XR2ePm1zl0FC98/+YO8kbuTmyLi",
-              "Obybor0c2k3RTppzU6xKVBYV74XmbFGtVGUX1crNbCWJ70MhWUJReCfcefHUCwAwkmWDhXAiFFrz",
-              "vZA8GSM42SMKsA6/S+4rsIi+OxHIX0Aq91Up/0uyYDV+dynuyz2ukVDxNveTEdDufnmNfJhX1J+M",
-              "gL4KD6yREee9+6chol2AyBoZcbINPA0ZbYeB1lmhPMfCH1s624Cvhrm6XJ+jYuXobGM8gY0TNBhP",
-              "OOSbOjsBNSqnwyO1pJtDQ7WklwZDCryEIYyl5JE0G1JgkpZwGOVRNBpSYPOhcEEwh6TpkAIv10rB",
-              "Ko+i8ZACN89LAXo4FA0GFZgcM9y1VE+xv6DC5bpcNpUHLDaHqkeP2LV8Xb6cnVwLSOnwjoV0cmi3",
-              "QvpozqnwEgox+JJD0axL0evTSxRscggadShstiQuWueQNB6jrs/ExHBaT9B8hJqTBIox1NroyM4k",
-              "zz/F3cEa+qOITyvbxKdHnPh0NXtW9Wm+dvuzwbQTMR3eSdFeDu2laCfNuSleGjPG/nMoGj5MLTKp",
-              "8c+qTPXoh6lMkjYeRueRNO2oeAngGFY5FM27Kl7yucIRcCiadFZF4jsekxyKQ+18qgn2qo97P1a/",
-              "oj4avwJiasCvkF4O7ldIJ835FV6mQ+YQi0PRrF9hki3yjCCHolG/wuZx5EX+eCSNR9Q4OSKZiBqH",
-              "ovmIGi8/ZTH7HIom/UqRG5PnVzgUh/Ir5Ryc5feBWp+ywRBfvDm8R4E+Du1PoIsGg2nypigVj6Jh",
-              "b5LnYeWZk3qCRn0Jm+GVZ1B4JI37kvrssYwrqSc4QjBN3hRMk48cTCty5nJ9ndLkuUw1NW/1FdE2",
-              "6rXBBBMxHd6X0F4O7U1oJw36E06OZMafcCia9Sd5mmae9TPNo3sTJv8zN0jPIWk84lWfW5qNzanm",
-              "Y/AmvLTWzNnhSD320Yy2adY1rUFvUkncXckc0Nkh//YaX1Kme+TJwXfyJSClw7sS0smhPQnpo8FH",
-              "x3jZ05l1wCNp+JxfVddvTTgEzZ7zM7nhuS94cUga35rU551nnbNqPQZnwkt5X0QODevID40x2fY5",
-              "PPIoDuVOKgkDKzll2q3JBisMUjq8OyGdHNqdkD4aPDXhfFqBOTXhUDS8L8m/7sCzffUEjToT9rsR",
-              "3IMIDknTzoTzTQpm3usJmncmnM9hFM6knqDJ15o3xor3Eyre6Ery/Bl4MZs50ZJJ2JF2pWvZSb2H",
-              "s2tSdsiS2GVn/HmBSa5o4LsgxkSr8jlJr6MoCmmWDulZZjdr83+1+b+Y738okqEOVGukGobR5v96",
-              "BgW7kTeP8RDdgi+7CsMYx5EzH8yXzeV/Vci99Psfimaa5Psf4G3a/F9NlD//abjA0fDKC4YouBXm",
-              "y3gaBmpHFMUPU4dk3JoiH5wqFiZhJHiB7wVIuKBEwpUfujcYLgoEA0UkzXos/Hb27q0AuuTBpg38",
-              "6gAa6nTo4922PVkQLGHbgjcjmyzBCcD507TuuNNJr5GEc9nveImTqnMnnvreVVbvAv5MG03xiU0o",
-              "cHYfkFjo3yKbfraNpUjqJIm57Ahde6DsSyHvjexWbRinfYOWnU5njCbCxPH87gxh7FyjUwHIe0L/",
-              "r8L7MECnFD7MI9j6ZQQnwI6PXgLbAxyDN416lCZyPIyED0sAJLPX917clXtp6/l6s9Nl2K00j2EL",
-              "607tiNAJL5kH64kIuuLwLoxu8Nxxkdg7qd4L5/HQuZ/3ycqu3h64d+Muc+0vxcXBHKY9iHFyMwFl",
-              "ZO6Ty2S2WaZO8ybSEQCXKeUQIFxyrXit2psI3YxwmKVIy2cCrI7YG3jYJmLs9k5LKfmhKtBktXsC",
-              "qA5lBoRNprZMTBlK7wy8AKMo7konpQZ6pQoRAiUJksGSKc9YH66ySHuehItgLGbz6IfOuKRtyTyO",
-              "PTdO+IKaBYOEKRATV0u7CWvo3kXzWPgRZPE+jH8kHb4mWJXkwIN7RXuUYTI0uJoOK20OeiHraUD4",
-              "w10qjAhwnh2j+7iLYLNKMuK9FBfxpG+JaVWQs0jWswvw2b5a2okAxEzeacuV3iewH6aLXiCjyYmE",
-              "L6TPBzFvmYouuTm4RnGXzTzYA3swXqUgr3nAfUc8Eb489FZrrXDCciCkqF8oalSYSiY+o0/nMx9/",
-              "YhO6qRKAWShsAPysmdu0ubItYeqXpvZfaLnVjD59/N9+/+9o+N+sx/96+/2/Z4X/S0Bqv/B/4/cf",
-              "TAD7FfwvGXKL/4+L/39J8EnuSgkoExKcTfAggZUM0KfO+xoFJHi7E+7nA/xfXl+c27+cn38EGEMx",
-              "rU2BoW33Bil2KtDqJ/kyQ+ypIrvAEOEN4S6pFTgzBsD7AOY+kTYvT1kUwMfX2frAAFOGQtbgWsy9",
-              "qUoxvGEeZ8XimtbXtJcNPsOUJTi5OvyLHDCTmcwlxeC7OvExUAugXE7AA+ypTHM6ZkMD28qXAvnI",
-              "xOBz6AUU6RBOe+lGA+DxBk7YjdUKQAYMmOlsDtWF7pes8kPv+5wNAIPZrw85ml8DzMvCS0dYK3Tu",
-              "hzRJqzSt+kp/acLo3btiP90j7ggX2/hvG/8tff9LlgearMiaabUA8Bnhv9U4R2P4TzV0nfn+F8V/",
-              "mtx+/+HI+O9t6IyFeIqIBw8DzwW4lyiJkEdOaRaPq2XmqvEJgwBPKCKsoMSvCwdzIWISzl3OSYQn",
-              "vX4WLLcJDbO+ttP5SP96HZAxvaRhu08wPhovvGRDfJVFUkT5EnKmmRRXVkJ9ZQ9PKUho62vCdGlT",
-              "hF1oIQmLZV+cKIXbPOwFoLuBi9IwFMwMYbknANYiBOlVJoZFYdV/HX+BMjyVRfcqClCJpRH0doOW",
-              "JwKikgQMlyETL0Yz3C0DyApztE7KWgVIbuQn6Y90/wX6z9jJopnpY2hZBDMhBlr6ibPS1Y39pv3R",
-              "XvLYYtI+aZE0WAorpuNPdagIA6aBfroNIUpWAnmYfN523K3XuAw0ciOMNRHKfL2+5KgxpYK6QFA0",
-              "BOp4h6JurkzkfiqsfP4rOpMFNEFSi+AmCO8yCQiUsS9F45Xwa9bgJ7h1+SmbsWztgVif6ECJwmSj",
-              "zALdNlkCVdNStkmpvoAxfZPZW9hXzGAtelewSZ8581OBDsp1gFkyHmgsZeqEiPOBGmKGr+KZoGQA",
-              "qaaLp8nCKKYk/zJgep2OoPjo8aoJqJ+IzCKkz/wkEkj9RGYnk4XC/G7H6WeITouVU7+OcjXAYBd5",
-              "C4lG4unTP0x75JTtkrVmhRmr8MDaGEaL+KpT9Ddw5uShMZ72rKpNUq0F5G1pS1va0pa2tKUtbWlL",
-              "W9rSlra0pS1taUtb2tKWtrSlLW1pS1va0pa2tKUtbamW/wPvgo/2AMgAAA==",
-          ])
-          root = Path('/opt/axp-eval')
-          root.mkdir(parents=True, exist_ok=True)
-          data = base64.b64decode(payload)
-          tarfile.open(fileobj=io.BytesIO(data), mode='r:gz').extractall(root)
-          PY
     - id: aapl-sec-edgar
       tag: AAPL-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: msft-financialdatasets-rest
       tag: MSFT-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: msft-sec-edgar
       tag: MSFT-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: googl-financialdatasets-rest
       tag: GOOGL-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: googl-sec-edgar
       tag: GOOGL-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: meta-financialdatasets-rest
       tag: META-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: meta-sec-edgar
       tag: META-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: jnj-financialdatasets-rest
       tag: JNJ-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: jnj-sec-edgar
       tag: JNJ-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: xom-financialdatasets-rest
       tag: XOM-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: xom-sec-edgar
       tag: XOM-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: wmt-financialdatasets-rest
       tag: WMT-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: wmt-sec-edgar
       tag: WMT-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: tsla-financialdatasets-rest
       tag: TSLA-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: tsla-sec-edgar
       tag: TSLA-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: cost-financialdatasets-rest
       tag: COST-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: cost-sec-edgar
       tag: COST-sec-edgar
-      overrides:
-        setup: *fixture_setup
     - id: pg-financialdatasets-rest
       tag: PG-financialdatasets-rest
       overrides:
-        setup: *fixture_setup
         secrets: [FINANCIAL_DATASETS_API_KEY]
     - id: pg-sec-edgar
       tag: PG-sec-edgar
-      overrides:
-        setup: *fixture_setup
 model: claude-sonnet-4-6
 secrets: [FINANCIAL_DATASETS_API_KEY]
 setup_checks:
@@ -300,11 +189,11 @@ setup_checks:
   - name: staged-fixtures-present
     script: |
       set -e
-      test -f /opt/axp-eval/fixtures/latest-reporting-period-core.json
-      test -f /opt/axp-eval/scripts/eval_bootstrap.py
-      mkdir -p /workspace/fixtures /workspace/scripts
-      cp -a /opt/axp-eval/fixtures/. /workspace/fixtures/
-      cp -a /opt/axp-eval/scripts/. /workspace/scripts/
+      test -f /workspace/fixtures/latest-reporting-period-core.json
+      test -f /workspace/fixtures/tickers.json
+      test -f /workspace/scripts/eval_bootstrap.py
+      test -f /workspace/scripts/fixture_paths.py
+      test -f /workspace/scripts/ticker_registry.py
   - name: eval-fixtures-available
     script: |
       python3 - <<'PY'

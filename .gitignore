@@ -4,10 +4,7 @@
 !.env.example
 
 # AXP local runner artifacts
-.axp/runs/
-.axp/sandboxes/
-.axp/builds/
-.axp/downloads/
+.axp/
 axp-debug-*.tgz
 
 # Python
